@@ -8,37 +8,40 @@ namespace Village_Simulation
 {
     class CityGeneration
     {
-        int population;
-        int houses;
-        int buildings;
-        Random rnd;
+        Random rnd = new Random(Guid.NewGuid().GetHashCode());
 
-        public CityGeneration(int aPopulation)
+        public CityGeneration()
         {
-            rnd = new Random();
-            Population = aPopulation;
-            Houses = rollHouses();
-            Buildings = rollBuildings();
-
+            
         }
 
-        public int Population { get => population; set => population = value; }
-        public int Houses { get => houses; set => houses = value; }
-        public int Buildings { get => buildings; set => buildings = value; }
 
-        int rollBuildings()
+        public int rollBuildings(int Population)
         {
             int buildingAmount = 0;
             buildingAmount = Population / 10;
-            //buildingAmount = Population / rnd.Next(50, 201);
             return buildingAmount;
         }
-        int rollHouses()
+        public int rollHouses(int Population)
         {
             int houseAmount = 0;
-            houseAmount = Population / rnd.Next(5,50);
+            houseAmount = Population / 5;
             return houseAmount;
         }
+        public bool generatePopulation (int population, City givenCity, RollGeneration peopleRoller, ModifyStats statModifier)
+        {
+            while(givenCity.Citizens.Count <= population)
+            {
+                Person founderPerson = new Person(peopleRoller,statModifier);
+                givenCity.Citizens.Add(founderPerson);
+                generateFamilyTree(founderPerson, givenCity, "default");
+            }
+
+
+            return true;
+        }
+
+
         public Person generateFamilyTree(Person givenPerson, City givenCity, string relationship)
         {
             givenCity.Citizens.Add(givenPerson);

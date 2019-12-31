@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Village_Simulation
 {
-    class House
+    public partial class House
     {
         int capacity;
         string houseName;
@@ -35,11 +35,7 @@ namespace Village_Simulation
             Capacity = maxAmount;
             FoodAmount = food;
         }
-        public void addOccupant(Person newOccupant)
-        {
-            newOccupant.Home = this;
-            occupants.Add(newOccupant);
-        }
+
         public int Capacity { get => capacity; set => capacity = value; }
         public string HouseName { get => houseName; set => houseName = value; }
         public int FoodAmount { get => foodAmount; set => foodAmount = value; }

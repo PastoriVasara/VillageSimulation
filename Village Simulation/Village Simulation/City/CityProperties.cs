@@ -6,49 +6,42 @@ using System.Threading.Tasks;
 
 namespace Village_Simulation
 {
-    class City
+    public partial class City
     {
         List<House> houses;
         List<Person> citizens;
+        List<Building> buildings;
+        CityGeneration generator;
+        RollGeneration initializedRoller;
+        ModifyStats statModifier;
 
         string cityName;
-        public City(string founderName)
+        int population;
+        int buildingAmount;
+        int houseAmount;
+
+        public City(string aCityName, int aPopulation, RollGeneration aRollGenerator, ModifyStats aStatModifier)
         {
-            cityName = founderName;
+            initializedRoller = aRollGenerator;
+            statModifier = aStatModifier;
+
+            generator = new CityGeneration();
+            population = aPopulation;
+            buildingAmount = generator.rollBuildings(population);
+            houseAmount = generator.rollHouses(population);
+            cityName = aCityName;
             houses = new List<House>();
             citizens = new List<Person>();
+            Buildings = new List<Building>();
+        }
+
+        public void generateCity()
+        {
 
         }
 
         public List<Person> Citizens { get => citizens; set => citizens = value; }
         internal List<House> Houses { get => houses; set => houses = value; }
-
-
-        public void printHousing()
-        {
-            int homeless = 0;
-            List<string> lastNames = new List<string>();
-            for(int i =0; i < Houses.Count; i++)
-            {
-                for(int j = 0; j < Houses[i].Occupants.Count; j++)
-                {
-                    if (!(lastNames.Contains(Houses[i].Occupants[j].LastName)))
-                    {
-                        lastNames.Add(Houses[i].Occupants[j].LastName);
-                        Houses[i].Occupants[j].upFamilyTree();
-                    }
-                    //Houses[i].Occupants[j].printStatArray();
-                    if(Houses[i].Occupants[j].Home.HouseName == "Streets")
-                    {
-                        homeless++;
-                    }
-                }
-            }
-            Console.WriteLine("\nCity of {0} has {1} homeless persons and {2} houses", cityName, homeless,Houses.Count);
-        }
-        public void breakpointer()
-        {
-            citizens = citizens;
-        }
+        public List<Building> Buildings { get => buildings; set => buildings = value; }
     }
 }
