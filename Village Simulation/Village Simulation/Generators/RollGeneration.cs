@@ -31,14 +31,12 @@ namespace Village_Simulation
             initializeLists();
         }
 
-        public double generateWealth(int intelligence)
+        public float generateWealth(int intelligence)
         {
-            double wealth = 0;
+            float wealth = 0;
 
             wealth = Rnd.Next(0, 100);
-            wealth = (10.0 / (double)intelligence) * wealth;
-            wealth = Math.Round(wealth, 2);
-
+            wealth = (10 / (float)intelligence) * wealth;
             return wealth;
         }
 

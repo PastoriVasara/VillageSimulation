@@ -6,43 +6,8 @@ using System.Threading.Tasks;
 
 namespace Village_Simulation
 {
-    public class Building
+    public partial class Building
     {
-        BuildingType type;
-        int visitorCapacity;
-        int workerCapacity;
- 
-        string name;
-
-        float salary;
-        int[] requirements;
-        int workDifficulty;
-        int openingHour;
-        int closingHour;
-        int workHours;
-        int workerAmount;
-
-        List<Person> workers;
-        List<Person> visitors;
-
-        public int OpeningHour { get => openingHour; set => openingHour = value; }
-        public int ClosingHour { get => closingHour; set => closingHour = value; }
-        public BuildingType Type { get => type; set => type = value; }
-
-        public Building(BuildingType aType)
-        {
-            workers = new List<Person>();
-            visitors = new List<Person>();
-            Type = aType;
-            visitorCapacity = Type.VisitorCapacity;
-            workerCapacity = Type.WorkerCapacity;
-            OpeningHour = Type.OpeningHour;
-            ClosingHour = Type.ClosingHour;
-            workHours = Type.WorkHours;
-            salary = 2;
-            workerAmount = 0;
-        }
-
         public bool work(Person person)
         {
             if (!workers.Contains(person))
@@ -51,8 +16,8 @@ namespace Village_Simulation
                 person.addToEventLog("went to work");
             }
             person.WorkAmount += 1;
-            person.modifyStamina(-1);
-            if(person.WorkAmount >= workHours)
+            person.StatModifier.modifyStamina(person,-1);
+            if (person.WorkAmount >= workHours)
             {
                 person.Wealth += salary;
                 workers.Remove(person);
@@ -74,13 +39,13 @@ namespace Village_Simulation
                 {
                     return false;
                 }
-                
+
             }
             else
             {
                 return true;
             }
-            
+
         }
 
         public bool interact(Person person)
@@ -90,7 +55,7 @@ namespace Village_Simulation
 
         public bool applyForJob(Person person)
         {
-            if(workerAmount < workerCapacity)
+            if (workerAmount < workerCapacity)
             {
                 person.WorkContract = workHours;
                 person.WorkPlace = this;

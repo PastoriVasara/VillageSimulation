@@ -5,12 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-
 namespace Village_Simulation
 {
-    class Program
+    public class MainThread
     {
-        static void jsonit(City city)
+        void jsonit(City city)
         {
             string json = JsonConvert.SerializeObject(city, Formatting.Indented,
                             new JsonSerializerSettings
@@ -20,9 +19,8 @@ namespace Village_Simulation
             System.IO.File.WriteAllText(@"D:\Ohjelmointi\VillageSimulation\data\people.json", json);
         }
 
-        static void Main(string[] args)
+        public void startVillage()
         {
-
             RollGeneration initializedRoller = new RollGeneration();
             CityGeneration flintGenerator = new CityGeneration(100);
             City flint = new City("Flint");
@@ -59,7 +57,7 @@ namespace Village_Simulation
             string[] types = { "Work", "Leisure" };
             string[] places = { "Docks", "Bar", "Library" };
             List<Building> buildings = new List<Building>();
-            for(int i = 0; i < flintGenerator.Buildings; i++)
+            for (int i = 0; i < flintGenerator.Buildings; i++)
             {
                 int type = initializedRoller.Rnd.Next(0, 2);
                 int place = type == 0 ? 0 : initializedRoller.Rnd.Next(1, 3);
@@ -71,23 +69,23 @@ namespace Village_Simulation
             for (int i = 0; i < flint.Citizens.Count; i++)
             {
                 int building = 0;
-                while(building < buildings.Count && flint.Citizens[i].applyForWork(buildings[building]))
+                while (building < buildings.Count && flint.Citizens[i].applyForWork(buildings[building]))
                 {
                     building++;
                 }
             }
             int time = 0;
-            while(time <= 24)
-            { 
-                for(int i = 0; i < flint.Citizens.Count; i++)
+            while (time <= 24)
+            {
+                for (int i = 0; i < flint.Citizens.Count; i++)
                 {
                     flint.Citizens[i].advanceTime(time);
                 }
                 time++;
             }
-            for(int i = 0; i < flint.Citizens.Count; i++)
+            for (int i = 0; i < flint.Citizens.Count; i++)
             {
-               flint.Citizens[i].printEventLog();
+                flint.Citizens[i].printEventLog();
             }
             //flint.printHousing();
             //flint.breakpointer();
