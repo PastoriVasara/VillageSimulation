@@ -25,18 +25,21 @@ body
     align-items: center;
 }
 .jsonButtons > *{
-   margin: 0px 10px 0px;
+    cursor: pointer;
+    margin: 0px 10px 0px;
 }
+
 .jsonContainer
 {
     
-    height: 90vh;
+    height: 85vh;
     width: 50vw;
     margin:auto;
-    -ms-transform: translateY(+5vh);
-    transform: translateY(+5vh);
+    -ms-transform: translateY(+2vh);
+    transform: translateY(+2vh);
     border-style: solid;
     border-color: #0099ff;
+    overflow-y: scroll;
 }
 .jsonLevel
 {
@@ -48,9 +51,57 @@ body
 {    
     display:flex;
     align-items: center;
+    overflow-x: hidden;
+    
 
 }
 .singleField >*
 {
-    margin: 0px 50% 0px;
+    margin: 0px 5px 0px;
+    
+}
+.hiddenMenu
+{
+    width:50%;
+    display:block;
+    position: absolute;
+    background:#0099ff;
+    left: 25vw;
+    top: 25vh;
+    height: 50%;
+
+}
+.menu{        
+    width:100%;
+    display:none;
+}
+.popup{
+    width:900px;
+    border-radius: 7px;
+    background:#6b6a63;
+    margin:30px auto 0;
+    padding:6px;
+    position:absolute;
+    left: 50%;
+  top: 50%;
+  margin-left: -400px;
+    margin-top: -40px; /* This should be half of the total height of your div */
+}
+
+.content{
+    background:#fff;
+    padding: 28px 26px 33px 25px;
+}
+.fieldClass
+{
+    resize: none;
+    overflow: hidden;
+}
+.hiddenBox
+{
+    display: block; 
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
 }
