@@ -1,0 +1,56 @@
+body
+{
+    font-family: 'Roboto';
+    font-weight: 700;
+}
+
+.grid-container {
+    height: 80vh;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+}
+.grid-item {
+    
+    padding: 20px;
+    margin: 20px;
+    font-size: 30px;
+    text-align: center;
+    border-style: solid;
+    border-color: #0099ff;
+}
+.blockHeader
+{
+    display: flex;
+    align-items: center;
+}
+.jsonButtons > *{
+   margin: 0px 10px 0px;
+}
+.jsonContainer
+{
+    
+    height: 90vh;
+    width: 50vw;
+    margin:auto;
+    -ms-transform: translateY(+5vh);
+    transform: translateY(+5vh);
+    border-style: solid;
+    border-color: #0099ff;
+}
+.jsonLevel
+{
+    margin: 5px;
+    border-style: solid;
+    border-color: #000000;
+}
+.singleField 
+{    
+    display:flex;
+    align-items: center;
+
+}
+.singleField >*
+{
+    margin: 0px 50% 0px;
+}

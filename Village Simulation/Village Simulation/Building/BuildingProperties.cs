@@ -31,7 +31,6 @@ namespace Village_Simulation
         {
             workers = new List<Person>();
             visitors = new List<Person>();
-
             salary = 2;
             workerAmount = 0;
         }

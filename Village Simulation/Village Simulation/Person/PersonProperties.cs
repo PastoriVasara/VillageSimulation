@@ -31,9 +31,10 @@ namespace Village_Simulation
 
         bool sleeping;
         int sleepAmount;
-        
+
 
         // Basic information
+        int familyLevel;
         string firstName;
         string lastName;
         string race;
@@ -98,14 +99,16 @@ namespace Village_Simulation
             Father = null;
             Mother = null;
             Home = null;
+            familyLevel = 0;
             statModifier = statInitialized;
             RollGenerator = rollInitialized;
             generatePerson();
         }
 
         //relationship of this compared to familymember
-        public Person(Person familyMember, string relationship)
+        public Person(Person familyMember, string relationship,int level)
         {
+            familyLevel = level;
             statModifier = familyMember.StatModifier;
             Children = new List<Person>();
             Father = null;
@@ -237,12 +240,5 @@ namespace Village_Simulation
         {
             return parentGeneration();
         }
-        
-        // DebugTest
-        public int getYear()
-        {
-            return Age[0];
-        }
-
     }
 }

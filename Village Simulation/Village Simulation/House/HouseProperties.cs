@@ -13,24 +13,20 @@ namespace Village_Simulation
 
         int foodAmount;
         double rent;
-        List<Person> occupants;
+        List<Person> family;
+        Random rnd;
 
-        public House(Person firstOccupant)
+        public House(Random aRnd, KeyValuePair<string,List<Person>> aFamily)
         {
-            Random rnd = firstOccupant.RollGenerator.Rnd;
-            Occupants = new List<Person>();
-            HouseName = firstOccupant.FirstName + "'s House";
-            Capacity = rnd.Next(1, 15);
-            firstOccupant.Home = this;
+            rnd = aRnd;
+            Family =aFamily.Value;
+            Capacity = Family.Count;
             rent = Capacity * rnd.Next(1, 21);
-            FoodAmount = (int)((firstOccupant.Wealth/rent)*rnd.Next(0,30));
-            Occupants.Add(firstOccupant);
         }
 
         public House(string location, int maxAmount, int food)
         {
-            Occupants = new List<Person>();
-
+            Family = new List<Person>();
             HouseName = location;
             Capacity = maxAmount;
             FoodAmount = food;
@@ -39,7 +35,7 @@ namespace Village_Simulation
         public int Capacity { get => capacity; set => capacity = value; }
         public string HouseName { get => houseName; set => houseName = value; }
         public int FoodAmount { get => foodAmount; set => foodAmount = value; }
-        public List<Person> Occupants { get => occupants; set => occupants = value; }
         public double Rent { get => rent; set => rent = value; }
+        public List<Person> Family { get => family; set => family = value; }
     }
 }

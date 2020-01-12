@@ -9,7 +9,7 @@ namespace Village_Simulation
     public partial class City
     {
         List<House> houses;
-        List<Person> citizens;
+        PersonList citizens;
         List<Building> buildings;
         CityGeneration generator;
         RollGeneration initializedRoller;
@@ -22,16 +22,16 @@ namespace Village_Simulation
 
         public City(string aCityName, int aPopulation, RollGeneration aRollGenerator, ModifyStats aStatModifier)
         {
-            initializedRoller = aRollGenerator;
+            InitializedRoller = aRollGenerator;
             statModifier = aStatModifier;
 
             generator = new CityGeneration();
-            population = aPopulation;
-            buildingAmount = generator.rollBuildings(population);
-            houseAmount = generator.rollHouses(population);
-            cityName = aCityName;
+            Population = aPopulation;
+            BuildingAmount = generator.rollBuildings(Population);
+            HouseAmount = generator.rollHouses(Population);
+            CityName = aCityName;
             houses = new List<House>();
-            citizens = new List<Person>();
+            CitizenList = new PersonList();
             Buildings = new List<Building>();
         }
 
@@ -40,8 +40,13 @@ namespace Village_Simulation
 
         }
 
-        public List<Person> Citizens { get => citizens; set => citizens = value; }
         internal List<House> Houses { get => houses; set => houses = value; }
         public List<Building> Buildings { get => buildings; set => buildings = value; }
+        public int Population { get => population; set => population = value; }
+        public int BuildingAmount { get => buildingAmount; set => buildingAmount = value; }
+        public int HouseAmount { get => houseAmount; set => houseAmount = value; }
+        public string CityName { get => cityName; set => cityName = value; }
+        public RollGeneration InitializedRoller { get => initializedRoller; set => initializedRoller = value; }
+        internal PersonList CitizenList { get => citizens; set => citizens = value; }
     }
 }

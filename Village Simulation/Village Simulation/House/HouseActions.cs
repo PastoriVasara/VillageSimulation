@@ -8,10 +8,18 @@ namespace Village_Simulation
 {
     public partial class House
     {
-        public void addOccupant(Person newOccupant)
+        public bool addOccupant(Person newOccupant)
         {
             newOccupant.Home = this;
-            occupants.Add(newOccupant);
+            if(family.Count < capacity)
+            {
+                family.Add(newOccupant);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

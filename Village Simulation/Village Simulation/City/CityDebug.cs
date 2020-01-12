@@ -28,11 +28,10 @@ namespace Village_Simulation
                     }
                 }
             }
-            Console.WriteLine("\nCity of {0} has {1} homeless persons and {2} houses", cityName, homeless, Houses.Count);
+            Console.WriteLine("\nCity of {0} has {1} homeless persons and {2} houses", CityName, homeless, Houses.Count);
         }
         public void breakpointer()
         {
-            citizens = citizens;
         }
     }
 }

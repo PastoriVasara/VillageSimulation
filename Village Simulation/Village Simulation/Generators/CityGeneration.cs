@@ -30,21 +30,37 @@ namespace Village_Simulation
         }
         public bool generatePopulation (int population, City givenCity, RollGeneration peopleRoller, ModifyStats statModifier)
         {
-            while(givenCity.Citizens.Count <= population)
+            PersonList citizenlist = givenCity.CitizenList;
+            while (citizenlist.Citizens.Count <= population)
             {
-                Person founderPerson = new Person(peopleRoller,statModifier);
-                givenCity.Citizens.Add(founderPerson);
-                generateFamilyTree(founderPerson, givenCity, "default");
-            }
 
+                Person founderPerson = new Person(peopleRoller,statModifier);
+                citizenlist.Citizens.Add(founderPerson);
+                generateFamilyTree(founderPerson, givenCity, "default",0);
+            }
+            return true;
+        }
+
+        public bool generateHousing (int houseCount, City givenCity)
+        {
+            for(int i = 0; i < houseCount; i++)
+            {
+                House newHouse = new House(givenCity.InitializedRoller.Rnd);
+                givenCity.Houses.Add(newHouse);
+            }
+            return true;
+        }
+
+        public bool populateHousing(List<House> houses, List<Person> people)
+        {
 
             return true;
         }
 
 
-        public Person generateFamilyTree(Person givenPerson, City givenCity, string relationship)
+        public Person generateFamilyTree(Person givenPerson, City givenCity, string relationship, int level)
         {
-            givenCity.Citizens.Add(givenPerson);
+            givenCity.CitizenList.Citizens.Add(givenPerson);
             Person so = null;
             List<Person> children = new List<Person>();
             Person father = null;
@@ -54,40 +70,37 @@ namespace Village_Simulation
             {
                 if (givenPerson.Father == null && givenPerson.generateFather())
                 {
-                    father = new Person(givenPerson, "father");
-                    mother = new Person(givenPerson, "mother");
-                    //generateFamilyTree(new Person(givenPerson, "father"), givenCity, "father");
+                    father = new Person(givenPerson, "father", level + 1);
+                    mother = new Person(givenPerson, "mother", level + 1);
                 }
             }
-
             if (givenPerson.SignificantOther == null && givenPerson.generateSO())
             {
-                so = new Person(givenPerson, "so");
+                so = new Person(givenPerson, "so",level);
             }
             while (relationship != "so" && givenPerson.childGeneration())
             {
-                children.Add(new Person(givenPerson, "child"));
+                children.Add(new Person(givenPerson, "child",level-1));
             }
 
             if (so != null)
             {
-                generateFamilyTree(so, givenCity, "so");
+                generateFamilyTree(so, givenCity, "so",level);
             }
 
             if (relationship != "child")
             {
                 if (father != null)
                 {
-                    generateFamilyTree(father, givenCity, "father");
+                    generateFamilyTree(father, givenCity, "father",level+1);
                 }
             }
-
 
             if(children.Count > 0)
             {
                 for (int i = 0; i < children.Count; i++)
                 {
-                    generateFamilyTree(children[i], givenCity, "child");
+                    generateFamilyTree(children[i], givenCity, "child",level-1);
                 }
             }
             return givenPerson;

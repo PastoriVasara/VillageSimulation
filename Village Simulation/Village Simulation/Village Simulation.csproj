@@ -46,15 +46,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Building.cs" />
-    <Compile Include="BuildingType.cs" />
-    <Compile Include="City.cs" />
-    <Compile Include="CityGeneration.cs" />
-    <Compile Include="House.cs" />
-    <Compile Include="Person.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Building\BuildingActions.cs" />
+    <Compile Include="Building\BuildingDebug.cs" />
+    <Compile Include="Building\BuildingProperties.cs" />
+    <Compile Include="City\CityActions.cs" />
+    <Compile Include="City\CityDebug.cs" />
+    <Compile Include="City\CityProperties.cs" />
+    <Compile Include="Generators\CityGeneration.cs" />
+    <Compile Include="House\HouseDebug.cs" />
+    <Compile Include="House\HouseList.cs" />
+    <Compile Include="House\HouseProperties.cs" />
+    <Compile Include="House\HouseActions.cs" />
+    <Compile Include="Helpers\ModifyStats.cs" />
+    <Compile Include="Main\MainThread.cs" />
+    <Compile Include="Person\Family.cs" />
+    <Compile Include="Person\PersonActions.cs" />
+    <Compile Include="Person\PersonList.cs" />
+    <Compile Include="Person\PersonProperties.cs" />
+    <Compile Include="Person\PersonDebug.cs" />
+    <Compile Include="Main\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RollGeneration.cs" />
+    <Compile Include="Generators\RollGeneration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
