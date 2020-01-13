@@ -35,8 +35,6 @@ body
     height: 85vh;
     width: 50vw;
     margin:auto;
-    -ms-transform: translateY(+2vh);
-    transform: translateY(+2vh);
     border-style: solid;
     border-color: #0099ff;
     overflow-y: scroll;
@@ -96,12 +94,20 @@ body
 {
     resize: none;
     overflow: hidden;
+    resize: vertical;
 }
 .hiddenBox
 {
     display: block; 
     margin-top: 10px;
     margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.submitButton
+{
+    margin-top: 10px;
+    display: block; 
     margin-left: auto;
     margin-right: auto;
 }

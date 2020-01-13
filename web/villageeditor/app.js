@@ -3,6 +3,7 @@ var http = require('http');
 var path = require('path');
 var bodyParser = require('body-parser');
 var reload = require('reload');
+var fs = require('fs');
 
 
 var app = express();
@@ -22,12 +23,54 @@ app.get("/",function(req,res)
 app.get("/building",function(req,res){
     res.sendFile(path.join(publicDir,'building.html'));
 })
+app.post("/building",function(req,res){
+    console.log(req.body);
+    fs.writeFile(path.join(publicDir, 'building.json'),JSON.stringify(req.body, null, 4),function(err){
+        if(err){
+        res.statusCode = 404;
+        res.end();
+        }
+        else{
+            res.statusCode = 200;
+            res.end();
+        }
+    });
+
+});
 app.get("/house",function(req,res){
     res.sendFile(path.join(publicDir,'house.html'));
 })
+app.post("/house",function(req,res){
+    console.log(req.body);
+    fs.writeFile(path.join(publicDir, 'house.json'),JSON.stringify(req.body, null, 4),function(err){
+        if(err){
+        res.statusCode = 404;
+        res.end();
+        }
+        else{
+            res.statusCode = 200;
+            res.end();
+        }
+    });
+
+});
 app.get("/person",function(req,res){
     res.sendFile(path.join(publicDir,'person.html'));
 })
+app.post("/person",function(req,res){
+    console.log(req.body);
+    fs.writeFile(path.join(publicDir, 'person.json'),JSON.stringify(req.body, null, 4),function(err){
+        if(err){
+        res.statusCode = 404;
+        res.end();
+        }
+        else{
+            res.statusCode = 200;
+            res.end();
+        }
+    });
+
+});
 var server = http.createServer(app);
 
 reload(app).then(function (reloadReturned) {
