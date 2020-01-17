@@ -1,13 +1,35 @@
 {
-    "level_0_1": {
+    "Type": {
         "children": [
             {
-                "propertyName": [
-                    "value",
-                    "value",
-                    "value"
-                ]
+                "Group-Type": "value"
+            },
+            {
+                "Group-Type": "value"
+            },
+            {
+                "Group-Type": "value"
             }
         ]
+    },
+    "Attributes": {
+        "children": [
+            {
+                "Group-Type": "value"
+            },
+            {
+                "Group-Type": "value"
+            }
+        ]
+    },
+    "Names": {
+        "children": [
+            {
+                "Group-Type": "value"
+            }
+        ]
+    },
+    "ÄLÄ POISTA": {
+        "children": []
     }
 }
